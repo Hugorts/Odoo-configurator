@@ -1,0 +1,57 @@
+<odoo>
+    <!-- Меню для модуля -->
+    <menuitem id="menu_configurator_root" name="Configurator" sequence="10"/>
+
+    <!-- Подменю для скриптов -->
+    <menuitem id="menu_configurator_scripts" name="Scripts" parent="menu_configurator_root" sequence="20"/>
+
+    <!-- Действие для открытия списка скриптов -->
+    <record id="action_configurator_scripts" model="ir.actions.act_window">
+        <field name="name">Scripts</field>
+        <field name="res_model">configurator.manager</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No scripts available.
+            </p>
+        </field>
+    </record>
+
+    <!-- Привязка действия к меню -->
+    <menuitem id="menu_configurator_scripts_list" name="Scripts List" parent="menu_configurator_scripts"
+              action="action_configurator_scripts"/>
+
+    <!-- Форма для отображения деталей скрипта -->
+    <record id="view_configurator_form_custom" model="ir.ui.view">
+        <field name="name">configurator.manager.form.custom</field>
+        <field name="model">configurator.manager</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="file_path"/>
+                        <field name="script_type"/>
+                    </group>
+<!--                    <footer>-->
+<!--                        <button string="Run Script" type="object" name="run_script" class="btn-primary"/>-->
+<!--                        <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+<!--                    </footer>-->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Дерево для отображения списка скриптов -->
+    <record id="view_configurator_tree_custom" model="ir.ui.view">
+        <field name="name">configurator.manager.tree.custom</field>
+        <field name="model">configurator.manager</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="file_path"/>
+                <field name="script_type"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
